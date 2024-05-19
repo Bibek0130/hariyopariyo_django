@@ -1,0 +1,32 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{%block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+<section class="features" id="features">
+    <h1 class="heading">Availability of <span>features</span></h1>
+    <div class="box-container">
+        <div class="box">
+            <img src="%static 'images/features-1.jpg'%">
+            <h3>Variety Recipes</h3>
+            <p>Step-by-step instruction to make it easy to master</p>
+            <a href="#" class="btn">read more</a>
+        </div>
+
+        <div class="box">
+            <img src="%static 'images/features-2.jpg'%">
+            <h3>Fresh And Organic</h3>
+            <p>Our ingredients can be eaten with confidence</p>
+            <a href="#" class="btn">read more</a>
+        </div>
+
+        <div class="box">
+            <img src="%static 'images/features-3.jpg'%">
+            <h3>Free Delivery</h3>
+            <p>Fast and safe delivery to your home</p>
+            <a href="#" class="btn">shop now</a>
+        </div>
+    </div>
+</section>
+
+
+{% endblock content %}

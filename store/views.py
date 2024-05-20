@@ -20,4 +20,12 @@ def main(request):
 def features(request):
     context = {}
     return render(request, 'store/features.html', context)
+
+# def products(request):
+#     context = {}
+#     return render(request, 'store/products.html', context)
+
+def categories(request):
+    context = {}
+    return render(request, 'store/categories.html', context)
     

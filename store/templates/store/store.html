@@ -4,7 +4,7 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 {% comment %} /* In href, what the code will do is it will look in the static folder and then go to the css folder and look for main.css*/ {% endcomment %}
-{% comment %} <section id ="Home">  {% endcomment %}
+<section class="home" id ="home"> 
 <div class="carousel">
     <div class="carousel_item carousel_item--visible">
         <img src="%static 'images/slider-1.jpg'%">
@@ -20,6 +20,6 @@
         <button id="carousel_button--next">></button>
     </div>
 </div>
-{% comment %} </section> {% endcomment %}
+</section>
 
 {% endblock content%}

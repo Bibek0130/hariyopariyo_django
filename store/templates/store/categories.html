@@ -1,0 +1,26 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content%}
+{% comment %} css link {% endcomment %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+{% comment %} categories {% endcomment %}
+<section class="categories" id="categories">
+    <h1 class="heading">product <span>categories</span></h1>
+    <div class="box-container">
+        <div class="box">
+            <img src="images/c-1.jpg">
+            <h3>Organic Vegetables</h3>
+            <p>From Farmers to you.</p>
+            <a href="#" class="btn">shop now</a>
+        </div>
+
+        <div class="box">
+            <img src="images/c-2.jpg">
+            <h3>Fresh Fruits</h3>
+            <p>From Farmers to you.</p>
+            <a href="#" class="btn">shop now</a>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

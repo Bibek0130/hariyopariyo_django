@@ -48,10 +48,10 @@
               </nav> {% endcomment %}
     
             <nav class="navbar">
-                <a href="#home">Home</a>
-                <a href="#features">features</a>
+                <a href="{%url 'store'%}">Home</a>
+                <a href="{%url 'features'%}">features</a>
                 <a href="#products">Products</a>
-                <a href="#categories">Categories</a>
+                <a href="{%url 'categories'%}">Categories</a>
                 {% comment %} <a href="#receipes">Receipes</a> {% endcomment %} 
                  <a href="{%url 'cart'%}">Cart</a>
                 <a href="#about-us">About us</a>
@@ -128,17 +128,17 @@
             
     
         </header>
-        <div id='home' class='home'>
-
+        
+       
         {% block content%}
 
         {% endblock content%} 
-        </div>
+       
     
 
 
         {% comment %} loading javascript bootstrap and files in our system {% endcomment %}
         <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-        <script src="% static 'js/script.js%"></script>
+        <script src="% static 'js/script.js'%"></script>
     </body>
 </html>

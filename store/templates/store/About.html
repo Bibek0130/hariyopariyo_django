@@ -1,0 +1,35 @@
+{% extends 'store/main.html'%}
+{%load static%}
+{%block content%}
+<section class="about-us" id="about-us">
+    <h1 class="heading">About <span>us</span></h1>
+    <div class="box-container">
+        <div class="box">
+            <img src="{%static 'images/a-1.png'%}" alt="mobile content">
+            <div class="content">
+                <h3>Mobile Client</h3>
+                <p>Support Android and ios download</p>
+                <a href="#" class="btn">Download</a>
+            </div>
+        </div>
+
+        <!-- <div class="box">
+            <img src="images/a-2.jpg">
+            <div class="content">
+                <h3>Flexible Shopping</h3>
+                <p>24-hour delivery service available</p>
+                <a href="#" class="btn">Join Membership</a>
+            </div>
+        </div> -->
+
+        <div class="box">
+            <img src="{%static 'images/a-3.png'%}">
+            <div class="content">
+                <h3>Returning a product</h3>
+                <p>Returning products with receipts</p>
+                <a href="#" class="btn">Apply Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+{%endblock content%}

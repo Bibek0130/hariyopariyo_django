@@ -28,4 +28,7 @@ def features(request):
 def categories(request):
     context = {}
     return render(request, 'store/categories.html', context)
-    
+
+def about(request):
+    context = {}
+    return render(request, 'store/About.html', context)   

@@ -54,7 +54,7 @@
                 <a href="{%url 'categories'%}">Categories</a>
                 {% comment %} <a href="#receipes">Receipes</a> {% endcomment %} 
                  <a href="{%url 'cart'%}">Cart</a>
-                <a href="#about-us">About us</a>
+                <a href="{%url 'about'%}">About us</a>
             </nav>
            
             <div class="icons">
@@ -133,6 +133,48 @@
         {% block content%}
 
         {% endblock content%} 
+        <section class="footer">
+            <div class="box-container">
+                <div class="box">
+                    <h3>Hariyo pariyo<i class="fa-solid fa-shop"></i></h3>
+                    <p>©Hariyo Pariyo 2024</p>
+                    <div class="share">
+                        <a href="#" class="fab fa-facebook-f"></a>
+                        <a href="#" class="fab fa-twitter"></a>
+                        <a href="#" class="fab fa-instagram"></a>
+                        <a href="#" class="fab fa-linkedin"></a>
+                    </div>
+                </div>
+    
+                <div class="box">
+                    <h3>contact info</h3>
+                    <a href="#" class="links"><i class="fas fa-phone"></i>+977-9812345678</a>
+                    <a href="#" class="links"><i class="fas fa-phone"></i>++977-9812345678</a>
+                    <a href="#" class="links"><i class="fas fa-envelope"></i>hariyopariyo@gmail.com</a>
+                    <a href="#" class="links"><i class="fas fa-map-marker-alt">Nepal</i>hariyopariyo@gmail.com</a>
+                </div>
+    
+                <div class="box">
+                    <h3>quick links</h3>
+                    <a href="#" class="links"><i class="fas fa-arrow-right"></i>home</a>
+                    <a href="#" class="links"><i class="fas fa-arrow-right"></i>features</a>
+                    <a href="#" class="links"><i class="fas fa-arrow-right"></i>products</a>
+                    <a href="#" class="links"><i class="fas fa-arrow-right"></i>categories</a>
+                    <a href="#" class="links"><i class="fas fa-arrow-right"></i>recpies</a>
+                    <a href="#" class="links"><i class="fas fa-arrow-right"></i>about us</a>
+                </div>
+    
+    
+                <div class="box">
+                    <h3>newsletter</h3>
+                    <p>subscribe for latest updates</p>
+                    <input type="email" placeholder="please enter your emal" class="email">
+                    <input type="submit" value="subscribe" class="btn"><br>
+                    <img src="{%static 'images/payment.png'%}" class="payment-img">
+                </div>
+    
+            </div>
+        </section>
        
     
 

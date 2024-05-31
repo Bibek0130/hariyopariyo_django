@@ -1,5 +1,168 @@
 {% extends 'store/main.html' %}
 {% load static %}
-{%block content %}
+{% block content %}
+{% comment %} linking css {% endcomment %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
 
-{%endblock content% }
+{% comment %} products section {% endcomment %}
+<section class="products" id="products">
+    
+    <h1 class="heading"> <span>products</span> </h1>
+    <div class="container">
+        {% for product in products %}
+        <div class="row" style="display:flex;">
+            
+             <div class="col col-lg-4" style="flex:.33;">
+                <img src="{{product.imageURL}}" class="product-img" alt="">
+                <h3>{{product.name}}</h3>
+                <div class="price">{{product.price}} </div>
+                 <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div> 
+                <button data-product={{product.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to cart</button>
+                <a href="#" class="btn btn-outline-sucess">View</a>
+            </div>
+            
+
+          {% comment %} <div class="col">
+                <img src="{%static 'images/product-2.jpg'%}" class="product-img"alt="">
+                <h3>{{product.name}}</h3>
+                <div class="price">{{product.price}}</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <button class="btn btn-outline-secondary add-btn">Add to cart</button>
+                <a href="#" class="btn btn-outline-sucess">View</a>
+            </div> 
+
+            <div class="col">
+                <img src="{%static 'images/product-3.jpg'%}" class="product-img"alt="">
+                <h3>{{product.name}}</h3>
+                <div class="price">{{product.price}}</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <button class="btn btn-outline-secondary add-btn">Add to cart</button>
+                <a href="#" class="btn btn-outline-sucess">View</a>
+            </div>  {% endcomment %}
+
+           
+            
+        </div>
+        {% endfor %}
+       
+    </div>
+
+    {% comment %} <div class="container">
+
+        <div class="row">
+            <div class="col">
+                <img src="{%static 'images/product-4.jpg'%}"class="product-img" alt="">
+                <h3>Zucchini</h3>
+                <div class="price"> Rs90 </div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <button class="btn btn-outline-secondary add-btn">Add to cart</button>
+                <a href="#" class="btn btn-outline-sucess">View</a>
+            </div>
+
+            <div class="col">
+                <img src="{%static 'images/product-5.jpg'%}"class="product-img" alt="">
+                <h3>Pumpkin</h3>
+                <div class="price"> Rs80 </div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <button class="btn btn-outline-secondary add-btn">Add to cart</button>
+                <a href="#" class="btn btn-outline-sucess">View</a>
+            </div>
+
+            <div class="col">
+                <img src="{%static 'images/product-6.jpg'%}" class="product-img" alt="">
+                <h3>Bitter Melon</h3>
+                <div class="price"> Rs300 </div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <button class="btn btn-outline-secondary add-btn">Add to cart</button>
+                <a href="#" class="btn btn-outline-sucess">View</a>
+            </div>
+
+        </div>
+        
+        <div class="row">
+            <div class="col">
+                <img src="{%static 'images/product-7.jpg'%}" class="product-img" alt="">
+                <h3>Big Taro</h3>
+                <div class="price"> Rs450 </div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <button class="btn btn-outline-secondary add-btn">Add to cart</button>
+                <a href="#" class="btn btn-outline-sucess">View</a>
+            </div>
+
+            <div class="col">
+                <img src="{%static 'images/product-8.jpg'%}" class="product-img"alt="">
+                <h3>White Zucchini</h3>
+                <div class="price">Rs15-</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <button class="btn btn-outline-secondary add-btn">Add to cart</button>
+                <a href="#" class="btn btn-outline-sucess">View</a>
+            </div>
+
+            <div class="col">
+                <img src="{%static 'images/product-8.jpg'%}" class="product-img"alt="">
+                <h3>White Zucchini</h3>
+                <div class="price">Rs15-</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <button class="btn btn-outline-secondary add-btn">Add to cart</button>
+                <a href="#" class="btn btn-outline-sucess">View</a>
+            </div>
+        </div>
+
+    </div> {% endcomment %}
+    <script type="text/javascript" src="{% static 'js/script.js'%}"></script>   
+</section>
+{% endblock content %}

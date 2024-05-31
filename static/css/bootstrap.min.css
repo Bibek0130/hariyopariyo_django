@@ -399,15 +399,21 @@ body {
 }
 
 /*======================PRODUCTS======================*/
-.products .product-slider {
+#products{
+    padding: 4rem;
+}
+.container {
     padding: 1rem;
 }
 
-.products .product-slider:first-child {
+.products .container:first-child {
     margin-bottom: 2rem;
 }
-
-.products .product-slider .box {
+.products .container .row .col-lg-4 {
+    flex: 0 0 auto;
+    width: 33.33333333%;
+  }
+.products .container .col  {
     background: #fff;
     border-radius: .5rem;
     text-align: center;
@@ -418,31 +424,41 @@ body {
     transition: .2s linear;
 }
 
-.products .product-slider .box:hover {
+/* .products .product-slider .box:hover {
     outline-offset: 0rem;
     outline: var(--outline-hover);
+} */
+
+.product-img {
+    width: 120px;
+    height: 100px;
 }
 
-.products .product-slider .box img {
-    height: 10rem;
+.products .container .col h3 {
+    font-size: 2rem;
+    color: var(--black);
 }
-
-.products .product-slider .box h3 {
+.products .container .col-lg-4 h3 {
     font-size: 2rem;
     color: var(--black);
 }
 
-.products .product-slider .box .price {
+.products .container .col .price {
+    font-size: 2rem;
+    color: var(--light-color);
+    padding: .5rem 0;
+}
+.products .container .col-lg-4 .price {
     font-size: 2rem;
     color: var(--light-color);
     padding: .5rem 0;
 }
 
-.products .product-slider .box .stars i {
+/* .products .product-slider .box .stars i {
     font-size: 1.7rem;
     color: var(--orange);
     padding: .5rem 0;
-}
+} */
 
 /*======================CATEGORIES======================*/
 .categories {
@@ -490,49 +506,93 @@ body {
     padding: 1rem 0;
 }
 
-/*======================RECIPES======================*/
-.recipes {
-    padding-top: 3rem;
+/*=====================Cart===========================*/
+#cart{
+    padding: 10rem;
+}
+#cart-icon{
+	width:25px;
+	display: inline-block;
+	margin-left: 15px;
+}
+.form-field{
+	width:250px;
+	display: inline-block;
+	padding: 5px;
 }
 
-.recipes .recipes-slider {
-    padding: 1rem;
+#cart-total{
+	display: block;
+	text-align: center;
+	color:#fff;
+	background-color: red;
+	width: 20px;
+	height: 25px;
+	border-radius: 50%;
+	font-size: 14px;
+}
+.box-element{
+    box-shadow:hsl(0, 0%, 80%) 0 0 16px;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 10px;
+    
 }
 
-.recipes .recipes-slider .box {
-    background: #fff;
-    border-radius: .5rem;
+.row-image{
+    width:100px;
+}
+
+.cart-icon{
+    width: 25px;
+    display: inline-block;
+    margin-left: 15px;
+}
+
+/* #cart-total{
+    display: block;
     text-align: center;
-    padding: 3rem 2rem;
-    outline-offset: -1rem;
-    outline: var(--outline);
-    box-shadow: var(--box-shadow);
-    transition: .2s linear;
+    color: #fff;
+} */
+
+.form-field{
+    width:250px;
+    display:inline-block;
+    padding: 5px;
 }
 
-.recipes .recipes-slider .box:hover {
-    outline-offset: 0rem;
-    outline: var(--outline-hover);
+.cart-row{
+    display: flex;
+    align-items: flex-stretch;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ececec;
 }
 
-.recipes .recipes-slider .box img {
-    height: 10rem;
-    width: 10rem;
-    border-radius: 50%;
+.quantity{
+    display: inline-block;
+    font-weight: 700;
+    padding-right: 10px;
+}
+.chg-quantity{
+    width: 12px;
+    cursor: pointer;
+    display: block;
+}
+
+/*======================Checkout======================*/
+.row{
+    padding-top: 2rem;
+}
+    /* display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;} */
+/* any class with hidden will not be visible */
+.hidden{
+    display: none!important;
 }
 
 
-.recipes .recipes-slider .box h3 {
-    padding: 1rem 0;
-    line-height: 1.8;
-    color: var(--black);
-    font-size: 2.2rem;
-}
-
-.recipes .recipes-slider .box .stars i {
-    color: var(--orange);
-    font-size: 1.7rem;
-}
 
 
 
@@ -597,6 +657,7 @@ body {
 
 .footer {
     background: var(--green);
+    float: bottom;
 
 }
 

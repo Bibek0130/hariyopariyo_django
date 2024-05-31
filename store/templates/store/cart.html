@@ -3,8 +3,52 @@
 
 {%block content %}
 <section class="cart" id="cart"> 
-<h3> cart </h3>
-<img src="%static 'images/slider-1.jpg'%">
+    <div class="container" style="">
+        <div class="col">
+            <div class = "box-element">
+                <a class="btn" href="{%url 'products'%}">&#x2190; continue shopping </a>
+
+                <br>
+                <br>
+                <table class="table">
+                    <tr>
+                        <th> <h5> Items: <Strong>{{order.get_cart_items}}</Strong></h5></th>
+                        <th> <h5> Total: <Strong>Rs40</Strong></h5></th>
+                        <th> 
+                            <a style="float:right; margin:5px;" class="btn" href="{%url 'checkout'%}"> Checkout </a>
+                        </th>
+                    </tr>
+                </table>
+            </div>
+            <br>
+            <div class = "box-element">
+                <div class="cart-row"> 
+                    <div style="flex:2"></div>
+                    <div style="flex:2"><strong>Item</strong></div>
+                    <div style="flex:1"><strong>Price</strong></div>
+                    <div style="flex:1"><strong>Quantity</strong></div>
+                    <div style="flex:1"><strong>Total</strong></div>
+                </div>
+                {% for item in items%}
+                <div class="cart-row"> 
+                    <div style="flex:2"><img src="{{item.product.imageURL}}" class='row-image'></div>
+                    <div style="flex:2">{{item.product.name}}</div>
+                    <div style="flex:1">{{item.product.price}}</div>
+                    <div style="flex:1">
+                        <p class="quantity">{{item.quantity}}</p>
+                        <div class="quantity">
+                            <img class="chg-quantity" src="{%static 'images/arrow_up.png'%}">
+
+                            <img class="chg-quantity" src="{%static 'images/arrow_down.png'%}">
+                        </div>
+                    </div>
+                    <div style="flex:1"><p>{{item.get_total}} </p></div>
+                </div>
+                {% endfor %}
+               
+            </div>
+        </div>
+    </div>
 </section>
 
 {%endblock content%}

@@ -158,7 +158,9 @@ function addCookieItem(productID, action){
 			delete cart[productID]
 		}
 	}
+	console.log('Cart: ',cart)
 	document.cookie = 'cart =' + JSON.stringify(cart) + ";domain=;path=/"
+	location.reload()
 
 }
 

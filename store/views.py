@@ -3,7 +3,9 @@ from .models import *
 from django.http import JsonResponse
 import json 
 from datetime import datetime
-0
+
+from .models import *
+from .utils import cookieCart
 # Create your views here.
 def store(request):
     context={}
@@ -16,9 +18,11 @@ def cart(request):
         items = order.orderitem_set.all()
         cartItems = order.get_cart_items
     else:
-        items = [] #to break loop
-        order = {'get_cart_total':0, 'get_cart_items':0}
-        cartItems = order['get_cart_items']
+        cookieData = cookieCart(request)
+        cartItems = cookieData['cartItems']
+        order = cookieData['order']
+        items = cookieData['items']
+        
     context = {'items':items, 'order':order, 'cartItems':cartItems}
     return render(request, 'store/cart.html', context)
 
@@ -34,10 +38,10 @@ def checkout(request):
         items = order.orderitem_set.all()
         cartItems = order.get_cart_items
     else:
-        #craete Empty cart for now for none - logged in users
-        order = {'get_cart_total':0, 'get_cart_items':0, 'shipping':False}
-        items=[]
-        cartItems = order['get_cart_items']
+        cookieData = cookieCart(request)
+        cartItems = cookieData['cartItems']
+        order = cookieData['order']
+        items = cookieData['items']
     context = {'items':items, 'order':order, 'cartItems':cartItems}
     return render(request, 'store/checkout.html', context)
 
@@ -56,11 +60,12 @@ def products(request):
         items = order.orderitem_set.all()
         cartItems = order.get_cart_items
     else:
-        items=[]
-        order = {'get_cart_total':0, 'get_cart_items':0}
-        cartItems = order['get_cart_items']
+        cookieData = cookieCart(request)
+        cartItems = cookieData['cartItems']
+        # order = cookieData['order']
+        # items = cookieData['items']
     products = Product.objects.all()
-    context = {'products':products, 'cartItems':cartItems, 'items':items, 'shipping':False}
+    context = {'products':products, 'cartItems':cartItems,'items':items}
     return render(request, 'store/products.html', context)
 
 def categories(request):

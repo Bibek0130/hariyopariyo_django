@@ -584,12 +584,14 @@ body {
 .row{
     padding-top: 2rem;
 }
-    /* display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;} */
+    
 /* any class with hidden will not be visible */
 .hidden{
-    display: none!important;
+    /* display: none!important; */
+}
+.checkout{
+    padding-top: 8rem;
+   
 }
 
 

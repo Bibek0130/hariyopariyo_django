@@ -131,7 +131,7 @@ for(i = 0; i<updateBtns.length; i++){
 		//to ensure if the user is guest user or not
 		console.log('USER:', user)
 		if(user == 'AnonymousUser'){
-			console.log("Not logged in")
+			addCookieItem(productId, action)
 		}else{
 			updateUserOrder(productId, action)
 		}
@@ -139,8 +139,31 @@ for(i = 0; i<updateBtns.length; i++){
 	})
 }
 
+function addCookieItem(productID, action){
+	console.log("Not Logged in ")
+
+	if (action == 'add'){
+		if (cart[productID] == undefined){
+			cart[productID] = {'quantity':1}
+
+		}else{
+			cart[productID]['quantity'] += 1
+		}
+	}
+	if (action == 'remove'){
+		cart[productID]['quantity'] -= 1
+
+		if (cart[productID]['quantity'] <=0){
+			console.log('Remove Item')
+			delete cart[productID]
+		}
+	}
+	document.cookie = 'cart =' + JSON.stringify(cart) + ";domain=;path=/"
+
+}
+
 function updateUserOrder(productId, action){
-	console.log('user is authenticated , sending data...')
+	console.log('user is logged in, sending data...')
 
 	var url= '/update_item/'
 
@@ -154,11 +177,11 @@ function updateUserOrder(productId, action){
 	})
 
 	.then((response) => {
-		return response.json();
+		return response.json()
 	})
 
 	.then((data) => {
-		console.log('Data:',data)
-		location.reload
-	})
+		
+		location.reload()
+	});
 }

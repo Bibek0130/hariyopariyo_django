@@ -5,18 +5,20 @@ from django.contrib.auth.models import User
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=200, null=True)
-    email = models.CharField(max_length=200, null=True)
+    email = models.CharField(max_length=200)
     
     def __str__(self):
         return self.name
 
 class Product(models.Model):
-    name = models.CharField(max_length=200, null=True)
-    price = models.CharField(max_length = 400)
+    name = models.CharField(max_length=200)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     digital = models.BooleanField(default=False, null=True, blank=False)
     image = models.ImageField(null=True, blank=True)
+    
     def __str__(self):
         return self.name
+    
     @property 
     def imageURL(self):
         try:
@@ -33,6 +35,14 @@ class Order(models.Model):
     
     def __str__(self):
         return str(self.id)
+    @property
+    def shipping(self):
+        shipping = False
+        orderitems = self.orderitem_set.all()
+        for i in orderitems:
+            if i.product.digital == False:
+                shipping = True
+            return shipping 
     @property
     def get_cart_total(self):
         orderitems =self.orderitem_set.all()
@@ -51,14 +61,23 @@ class OrderItem(models.Model):
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
     
+    #adding a class named meta to enforce uniqueness in our OrderITem. This is done to fetch a single OrderITem
+    class Meta:
+        unique_together = ('product', 'order')
+    
     @property
     def get_total(self):
-        total = self.product.price * self.quantity
+        if self.product and self.product.price:
+            total = self.product.price * self.quantity
+        else:
+            total = 0
         return total
+    
         
 
 class ShippingAddress(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     address = models.CharField(max_length=200, null=False)
     city = models.CharField(max_length=200, null=False)

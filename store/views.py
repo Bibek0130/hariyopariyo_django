@@ -2,7 +2,8 @@ from django.shortcuts import render
 from .models import *
 from django.http import JsonResponse
 import json 
-
+from datetime import datetime
+0
 # Create your views here.
 def store(request):
     context={}
@@ -21,6 +22,11 @@ def cart(request):
     context = {'items':items, 'order':order, 'cartItems':cartItems}
     return render(request, 'store/cart.html', context)
 
+#to  fix csrf 403 error while usingg incognito mode or when a user loggs in for the first time.
+#here, we import csrf_exempt 
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
 def checkout(request):
     if  request.user.is_authenticated:
         customer = request.user.customer
@@ -29,7 +35,7 @@ def checkout(request):
         cartItems = order.get_cart_items
     else:
         #craete Empty cart for now for none - logged in users
-        order = {'get_cart_total':0, 'get_cart_items':0}
+        order = {'get_cart_total':0, 'get_cart_items':0, 'shipping':False}
         items=[]
         cartItems = order['get_cart_items']
     context = {'items':items, 'order':order, 'cartItems':cartItems}
@@ -54,7 +60,7 @@ def products(request):
         order = {'get_cart_total':0, 'get_cart_items':0}
         cartItems = order['get_cart_items']
     products = Product.objects.all()
-    context = {'products':products, 'cartItems':cartItems}
+    context = {'products':products, 'cartItems':cartItems, 'items':items, 'shipping':False}
     return render(request, 'store/products.html', context)
 
 def categories(request):
@@ -63,7 +69,27 @@ def categories(request):
 
 def about(request):
     context = {}
-    return render(request, 'store/About.html', context)   
+    return render(request, 'store/About.html', context) 
+
+#merging duplicates and removing extras
+def merge_duplicates():
+    from store.models import OrderItem
+
+    duplicates = OrderItem.objects.values('order', 'product').annotate(count=models.Count('id')).filter(count__gt=1)
+
+    for duplicate in duplicates:
+        items = OrderItem.objects.filter(order=duplicate['order'], product=duplicate['product'])
+        main_item = items.first()
+        extra_items = items[1:]
+
+        for item in extra_items:
+            main_item.quantity += item.quantity
+            item.delete()
+
+        main_item.save()
+
+merge_duplicates()
+  
 
 #update item view
 def updateItem(request):
@@ -82,7 +108,7 @@ def updateItem(request):
     
     if action == 'add':
         orderItem.quantity = (orderItem.quantity + 1)
-    elif action == "remove":
+    elif action == 'remove':
         orderItem.quantity = (orderItem.quantity - 1)
     
     orderItem.save()
@@ -90,3 +116,38 @@ def updateItem(request):
     if orderItem.quantity <= 0:
         orderItem.delete()
     return JsonResponse('Item was added', safe=False)
+
+#creating processorder function
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+def processOrder(request):
+    transaction_id = datetime.datetime.now().timestamp()
+    data = json.load(request.body)
+    
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        total = float(data['form']['total'])
+        order.transaction_id = transaction_id
+        
+        #conformation to see if the data has been manipulated from frontend or not
+        if total == order.get_cart_total:
+            order.complete = True
+        order.save()
+        
+        #adding shipping logic
+        if order.shipping == True:
+            ShippingAddress.objects.create(
+                customer = customer,
+                order = order,
+                address = data['shipping']['address'],
+                city = data['shipping']['city'],
+                state = data['shipping']['state'],
+                zipcode = data['shipping']['zipcode'],
+            )
+        
+    else:
+        print('User is not logged in')
+    return JsonResponse('Payment Submitted...', safe=False)
+    

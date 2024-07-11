@@ -97,9 +97,10 @@
               </nav> {% endcomment %}
     
             <nav class="navbar">
-                <a href="{%url 'store'%}">Home</a>
-                <a href="{%url 'features'%}">features</a>
+                {% comment %} <a href="{%url 'store'%}">Home</a> {% endcomment %}
                 <a href="{%url 'products'%}">Products</a>
+                <a href="{%url 'features'%}">features</a>
+                
                 <a href="{%url 'categories'%}">Categories</a>
                 {% comment %} <a href="#receipes">Receipes</a> {% endcomment %} 
             
@@ -194,7 +195,7 @@
         {% block content%}
 
         {% endblock content%} 
-        <section class="footer">
+      {% comment %}   <section class="footer">
             <div class="box-container">
                 <div class="box">
                     <h3>Hariyo pariyo<i class="fa-solid fa-shop"></i></h3>
@@ -235,8 +236,8 @@
                 </div>
     
             </div>
-        </section>
-       
+        </section> 
+        {% endcomment %}
     
 
 

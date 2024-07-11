@@ -4,24 +4,19 @@ from django.http import JsonResponse
 import json 
 from datetime import datetime
 
-from .models import *
-from .utils import cookieCart
+
+from .utils import cookieCart, cartData, guestOrder
 # Create your views here.
 def store(request):
     context={}
     return render(request, 'store/store.html',context)
 
 def cart(request):
-    if request.user.is_authenticated:
-        customer = request.user.customer
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        items = order.orderitem_set.all()
-        cartItems = order.get_cart_items
-    else:
-        cookieData = cookieCart(request)
-        cartItems = cookieData['cartItems']
-        order = cookieData['order']
-        items = cookieData['items']
+    
+    data = cartData(request)
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
         
     context = {'items':items, 'order':order, 'cartItems':cartItems}
     return render(request, 'store/cart.html', context)
@@ -32,16 +27,11 @@ from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
 def checkout(request):
-    if  request.user.is_authenticated:
-        customer = request.user.customer
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        items = order.orderitem_set.all()
-        cartItems = order.get_cart_items
-    else:
-        cookieData = cookieCart(request)
-        cartItems = cookieData['cartItems']
-        order = cookieData['order']
-        items = cookieData['items']
+    
+    data = cartData(request)
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
     context = {'items':items, 'order':order, 'cartItems':cartItems}
     return render(request, 'store/checkout.html', context)
 
@@ -54,18 +44,13 @@ def features(request):
     return render(request, 'store/features.html', context)
 
 def products(request):
-    if request.user.is_authenticated:
-        customer = request.user.customer
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        items = order.orderitem_set.all()
-        cartItems = order.get_cart_items
-    else:
-        cookieData = cookieCart(request)
-        cartItems = cookieData['cartItems']
-        # order = cookieData['order']
-        # items = cookieData['items']
+    data = cartData(request)
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
+
     products = Product.objects.all()
-    context = {'products':products, 'cartItems':cartItems,'items':items}
+    context = {'products':products, 'cartItems':cartItems,'items':items, 'order':order} 
     return render(request, 'store/products.html', context)
 
 def categories(request):
@@ -106,15 +91,16 @@ def updateItem(request):
     print('ProductId:', productId)
     
     customer = request.user.customer
-    product = Product.objects.get(id=productId)
+   
     order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    product = Product.objects.get(id=productId)
     # reason we are using get_or_crate beacuse we want to add to it and modify it.
     orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
     
     if action == 'add':
-        orderItem.quantity = (orderItem.quantity + 1)
+        orderItem.quantity += 1
     elif action == 'remove':
-        orderItem.quantity = (orderItem.quantity - 1)
+        orderItem.quantity -= 1
     
     orderItem.save()
     
@@ -133,16 +119,21 @@ def processOrder(request):
     if request.user.is_authenticated:
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        total = float(data['form']['total'])
-        order.transaction_id = transaction_id
         
-        #conformation to see if the data has been manipulated from frontend or not
-        if total == order.get_cart_total:
-            order.complete = True
-        order.save()
         
-        #adding shipping logic
-        if order.shipping == True:
+    else:
+        customer, order  = guestOrder(request, data)
+    
+    total = float(data['form']['total'])
+    order.transaction_id = transaction_id
+    
+    
+    #conformation to see if the data has been manipulated from frontend or not
+    if total == float(order.get_cart_total):
+        order.complete = True
+    order.save()  
+    
+    if order.shipping == True:
             ShippingAddress.objects.create(
                 customer = customer,
                 order = order,
@@ -151,8 +142,6 @@ def processOrder(request):
                 state = data['shipping']['state'],
                 zipcode = data['shipping']['zipcode'],
             )
-        
-    else:
-        print('User is not logged in')
-    return JsonResponse('Payment Submitted...', safe=False)
+    
+    return JsonResponse('Payment Submitted...', safe=False )
     

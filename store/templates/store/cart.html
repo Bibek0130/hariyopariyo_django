@@ -13,7 +13,7 @@
                 <table class="table">
                     <tr>
                         <th> <h5> Items: <Strong>{{order.get_cart_items}}</Strong></h5></th>
-                        <th> <h5> Total: <Strong>Rs40</Strong></h5></th>
+                        <th> <h5> Total: <Strong>{{ order.get_cart_total }}</Strong></h5></th>
                         <th> 
                             <a style="float:right; margin:5px;" class="btn" href="{%url 'checkout'%}"> Checkout </a>
                         </th>

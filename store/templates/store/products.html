@@ -8,7 +8,8 @@
 <section class="products" id="products">
     
     <h1 class="heading"> <span>products</span> </h1>
-    <div class="container">
+    <div class="container product-container">
+        
         {% for product in products %}
         <div class="row" style="display:flex;">
             
@@ -28,7 +29,7 @@
             </div>
             
             
-             <div class="col col-lg-4" style="flex:.33;">
+            <div class="col col-lg-4" style="flex:.33;">
                 <img src="{{product.imageURL}}" class="product-img" alt="">
                 <h3>{{product.name}}</h3>
                 <div class="price">{{product.price}} </div>
@@ -55,7 +56,7 @@
                 </div> 
                 <button data-product={{product.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to cart</button>
                 <a href="#" class="btn btn-outline-sucess">View</a>
-            </div>
+            </div> 
             
 
           {% comment %} <div class="col">

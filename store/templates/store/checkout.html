@@ -58,14 +58,16 @@
             </div>
             {% endfor %}
             <h5>Item: {{ order.get_cart_items }}</h5>
-            <h5>Total: Rs40</h5>
+            <h5>Total: Rs {{ order.get_cart_total }}</h5>
         </div>
     </div>
 </div>
 <script src="https://www.paypal.com/sdk/js?client-id=AYXD3klDNoPcH-G1PPnFtliwh2iBcjiMUFsen7x_kriFxXK44YBE6o8dhPUMjTHfEXvHXQqDibUZSlut&currency=USD"></script>
 <script>
     // Render the PayPal button into #paypal-button-container
+    var total = {{order.get_cart_total}}
     paypal.Buttons({
+        
         style: {
             color: 'blue',
             shape: 'rect'
@@ -92,7 +94,7 @@
             return actions.order.create({
                 purchase_units: [{
                     amount: {
-                        value: '0.01'
+                        value: parseFloat(total).toFixed(2)
                     }
                 }]
             });

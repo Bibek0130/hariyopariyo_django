@@ -405,6 +405,11 @@ body {
 .container {
     padding: 1rem;
 }
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    
+}
 
 .products .container:first-child {
     margin-bottom: 2rem;
@@ -586,8 +591,8 @@ body {
 }
     
 /* any class with hidden will not be visible */
-.hidden{
-    /* display: none!important; */
+.hidden {
+    display: none!important; 
 }
 .checkout{
     padding-top: 12rem;

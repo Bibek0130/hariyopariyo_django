@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=E:\non-credt\IT skills\python\django\hariyopariyo\hariyopariyo\skills\python\django\hariyopariyo\hariyopariyo
+set VIRTUAL_ENV=E:\non-credt\ITskills\python\django\hariyopariyo\hariyopariyo\skills\python\django\hariyopariyo\hariyopariyo
 
 if not defined PROMPT set PROMPT=$P$G
 

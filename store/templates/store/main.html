@@ -101,12 +101,12 @@
                 <a href="{%url 'products'%}">Products</a>
                 <a href="{%url 'features'%}">features</a>
                 
-                <a href="{%url 'categories'%}">Categories</a>
+                
                 {% comment %} <a href="#receipes">Receipes</a> {% endcomment %} 
             
                 <a href="{%url 'about'%}">About us</a>
                 
-                <a href="#"class="btn btn-warning" class="fas fa-user" id="login-btn">Login</a>
+                <a href="{%url 'login'%}"class="btn btn-warning" class="fas fa-user" id="login-btn">Login</a>
                 
                 <a href="{% url 'cart' %}">
                    <img  id="cart-icon" src="{% static 'images/cart.png' %}">

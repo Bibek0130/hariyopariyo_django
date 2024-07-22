@@ -1,0 +1,45 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{%block content%}
+
+
+<div class="container mt-4">
+<h2>Register</h2><br>
+<form method="POST">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+{% comment %} <form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        {{ form.username.label_tag }}
+        {{ form.username }}
+    </div>
+    <div class="form-group">
+        {{ form.email.label_tag }}
+        {{ form.email }}
+    </div>
+    <div class="form-group">
+        {{ form.address.label_tag }}
+        {{ form.address }}
+        </div>
+    <div class="form-group">
+        {{ form.create_password.label_tag }}
+        {{ form.create_password }}
+    </div>
+
+    <div class="form-group">
+        {{ form.retype_password.label_tag }}
+        {{ form.retype_password }}
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+</form> {% endcomment %}
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Add any additional JavaScript -->
+{%endblock content%}

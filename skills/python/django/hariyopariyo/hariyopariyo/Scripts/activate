@@ -35,7 +35,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="E:\non-credt\IT skills\python\django\hariyopariyo\hariyopariyo\skills\python\django\hariyopariyo\hariyopariyo"
+VIRTUAL_ENV="E:\non-credt\ITskills\python\django\hariyopariyo\hariyopariyo\skills\python\django\hariyopariyo\hariyopariyo"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

@@ -5,29 +5,23 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-        {% comment %} <div class="container py-2">
-          <div class="row py-4 pb-0 pb-sm-4 align-items-center ">
-    
-            <div class="col-sm-4 col-lg-3 text-center text-sm-start">
-              <div class="main-logo">
-                <a href="main.html">
-                  <img src="/static/store/images/logo.png" alt="logo" class="img-fluid"><br> <br>
-                </a>
-              </div>
-            </div> {% endcomment %}
+<div class="container-xl mt-5" style="padding-top:10rem; display:felx; text-align:center;">
+
       
-                <h1>Login</h1>
+      
+                <h4>Login</h1>
                 {% if error %}
                  <p>{{ error }}</p>
     {% endif %}
-    <form method="post" style="">
+    <form method="post" style="font-weight:4rem; ">
         {% csrf_token %}
-        <label for="username">Username:</label><br>
-        <input type="text" name="username" id="username" class="input-large" required><br><br>
-        <label for="password">Password:</label><br>
-        <input type="password" name="password" id="password"class="input-large" required><br><br><br>
+        <label for="username" style="font-size:2rem;">Username:</label><br>
+        <input type="text" name="username" id="username" class="input-large" style="font-size:2rem;" required><br><br>
+        <label for="password" style="font-size:2rem;">Password:</label><br>
+        <input type="password" name="password" id="password"class="input-large" style="font-size:2rem;" required><br><br><br>
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
+  </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -55,8 +55,19 @@ body {
     cursor: pointer;
     background: none;
 }
+.btn-small{
+    margin-top: 1rem;
+    display: inline-block;
+    padding: 0.5rem 1.5rem; /* Adjusted padding to make the button smaller */
+    font-size: 1rem; /* Adjusted font size to make the text smaller */
+    border-radius: 0.3rem; /* Adjusted border-radius to make the corners less rounded */
+    border: 0.1rem solid var(--orange); /* Adjusted border thickness */
+    color: var(--black);
+    cursor: pointer;
+    background: none;
+}
 
-.btn:hover {
+.btn:hover, .btn-small {
     background: var(--orange);
     color: #fff
 }

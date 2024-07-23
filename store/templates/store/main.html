@@ -105,8 +105,15 @@
                 {% comment %} <a href="#receipes">Receipes</a> {% endcomment %} 
             
                 <a href="{%url 'about'%}">About us</a>
+
+            {% if user.is_authenticated %}
+        {% comment %} <li class="nav-item"><a class="btn btn-warning" href="{% url 'logout' %}">Logout</a></li> {% endcomment %}
+        {% comment %} {% else %} {% endcomment %}
+        <li class="nav-item"><a class="btn-small btn-warning" href="{% url 'register' %}">Register</a></li>
+        <li class="nav-item"><a class="btn-small btn-warning" href="{% url 'login' %}">Login</a></li>
+        {% endif %}
                 
-                <a href="{%url 'login'%}"class="btn btn-warning" class="fas fa-user" id="login-btn">Login</a>
+                {% comment %} <a href="{%url 'login'%}"class="btn btn-warning" class="fas fa-user" id="login-btn">Login</a> {% endcomment %}
                 
                 <a href="{% url 'cart' %}">
                    <img  id="cart-icon" src="{% static 'images/cart.png' %}">

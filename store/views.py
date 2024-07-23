@@ -15,7 +15,7 @@ def register(request):
             print(user)
             user.save()
             #login(request, user)
-            return redirect('home')
+            return redirect('login')
     else:
         form = CustomUserCreationForm()
     return render(request, 'store/register.html', {'form': form})
@@ -32,7 +32,7 @@ def login(request):
         form = CustomAuthenticationForm()
     return render(request, 'store/login.html', {'form': form})
 
-def logout_view(request):
+def logout(request):
     logout(request)
     return redirect('products')
 

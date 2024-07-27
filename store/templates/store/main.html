@@ -67,7 +67,7 @@
     <body> 
         <header class="header">
 
-            <a class="logo" href="#">
+            <a class="logo" href="{%url 'store'%}">
                 <i class="fa-solid fa-shop"></i>Hariyo pariyo
               </a>
             {% comment %} <nav class="navbar"  style='background-color: #789527;'>
@@ -105,20 +105,19 @@
                 {% comment %} <a href="#receipes">Receipes</a> {% endcomment %} 
             
                 <a href="{%url 'about'%}">About us</a>
-
-            {% if user.is_authenticated %}
-        {% comment %} <li class="nav-item"><a class="btn btn-warning" href="{% url 'logout' %}">Logout</a></li> {% endcomment %}
-        {% comment %} {% else %} {% endcomment %}
-        <li class="nav-item"><a class="btn-small btn-warning" href="{% url 'register' %}">Register</a></li>
-        <li class="nav-item"><a class="btn-small btn-warning" href="{% url 'login' %}">Login</a></li>
-        {% endif %}
-                
                 {% comment %} <a href="{%url 'login'%}"class="btn btn-warning" class="fas fa-user" id="login-btn">Login</a> {% endcomment %}
                 
                 <a href="{% url 'cart' %}">
                    <img  id="cart-icon" src="{% static 'images/cart.png' %}">
                </a>
                <span id="cart-total">{{cartItems}}</span>
+
+               {% if user.is_authenticated %}
+                <li class="nav-item"><a class="btn btn-warning btn-sm" href="{% url 'logout' %}" style="align-items:left;">Logout</a></li>
+                {% else %}
+                <li class="nav-item"><a class="btn-sm btn-warning" href="{% url 'register' %}" style="align-items:left;">Register</a></li>
+                <li class="nav-item"><a class="btn-sm btn-warning" href="{% url 'login' %}">Login</a></li>
+                {% endif %}
    
             </nav>
            
@@ -185,17 +184,6 @@
                 <div class="total">total : Rs660</div>
                 <a href="#" class="btn">checkout</a>
             </div> {% endcomment %}
-    
-            <form action="" class="sign-in-form">
-                <h3>sign in</h3>
-                <input type="account" placeholder="please enter your account number" class="box">
-                <input type="password" placeholder="please enter your password" class="box">
-                <p>forget your password <a href="#">click here</a></p>
-                <p>Registered account <a href="#">create</a></p>
-                <input type="submit" value="sign in" class="btn">
-            </form>
-            
-    
         </header>
         
        

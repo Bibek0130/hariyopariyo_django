@@ -126,7 +126,7 @@ def updateItem(request):
    
     order, created = Order.objects.get_or_create(customer=customer, complete=False)
     product = Product.objects.get(id=productId)
-    # reason we are using get_or_crate beacuse we want to add to it and modify it.
+    # reason we are using get_or_create beacuse we want to add to it and modify it.
     orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
     
     if action == 'add':

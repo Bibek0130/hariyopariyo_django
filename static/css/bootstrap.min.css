@@ -50,24 +50,24 @@ body {
     padding: 0.8rem 3rem;
     font-size: 1.7rem;
     border-radius: 0.5rem;
-    border: 0.2rem solid var(--orange);
+    border: 0.2rem solid var(--orange); 
     color: var(--black);
     cursor: pointer;
     background: none;
 }
-.btn-small{
-    margin-top: 1rem;
+.btn-sm{
+    margin-top: 0.5rem;
     display: inline-block;
-    padding: 0.5rem 1.5rem; /* Adjusted padding to make the button smaller */
-    font-size: 1rem; /* Adjusted font size to make the text smaller */
-    border-radius: 0.3rem; /* Adjusted border-radius to make the corners less rounded */
-    border: 0.1rem solid var(--orange); /* Adjusted border thickness */
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    border: 0.2rem solid var(--orange); 
     color: var(--black);
     cursor: pointer;
     background: none;
 }
 
-.btn:hover, .btn-small {
+.btn:hover, .btn-sm {
     background: var(--orange);
     color: #fff
 }
@@ -291,6 +291,28 @@ body {
     text-decoration: underline;
 }
 
+/* register form */
+.container-register {
+    padding: 12rem 2rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.form-container-register {
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.form-container-register h2 {
+    margin-bottom: 2rem;
+}
+.form-container-register input {
+    margin-bottom: 1rem;
+}
 
 /*======================HOME======================*/
 #home{
